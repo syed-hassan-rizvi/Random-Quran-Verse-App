@@ -1,38 +1,184 @@
+/* Reset body and html to eliminate any margins and ensure full viewport coverage */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Use CSS Flexbox to ensure the App covers the entire viewport */
 .App {
-  text-align: center;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;  /* Full viewport height */
+  width: 100vw;  /* Full viewport width */
+  display: flex;  /* Use flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: flex-start;  /* Start content from the top */
+  align-items: center;      /* Center the content horizontally */
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Navbar styling to be fixed at the top */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure it stays above other content */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Adjust the padding of the container to account for the fixed navbar */
+.container {
+  padding-top: 70px; /* Adjust based on your navbar height */
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Background colors for light and dark mode */
+.light-mode {
+  background-color: #f5f5f5; /* Light mode background */
+  color: #333; /* Light mode text color */
 }
 
-.App-link {
-  color: #61dafb;
+.dark-mode {
+  background-color: #121212; /* Dark mode background */
+  color: #f5f5f5; /* Dark mode text color */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Card styling */
+.card {
+  background-color: #ffffff; /* Default light mode background */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%; /* Make card responsive */
+  margin: 0 auto; /* Ensure it's centered */
+}
+
+.dark-mode .card {
+  background-color: #1e1e1e; /* Dark mode card background */
+  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Verse key styling */
+.verse-key {
+  font-size: 1.5rem;
+  color: #007BFF;
+}
+
+.dark-mode .verse-key {
+  color: #90caf9;
+}
+
+/* Translation text styling */
+.translation-text {
+  font-size: 1rem;
+  color: inherit; /* Use inherited text color */
+}
+
+.dark-mode .translation-text {
+  color: #f5f5f5; /* Dark mode text color for translation text */
+}
+
+/* Header (Translations) styling */
+h3 {
+  color: inherit; /* Use inherited text color */
+  margin-top: 20px; /* Margin for spacing */
+}
+
+.dark-mode h3 {
+  color: #f5f5f5; /* Dark mode color for header */
+}
+
+/* Scrollable Translations Container */
+.translations-container {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Button hover effect */
+.btn-primary {
+  background-color: #007BFF;
+  transition: background-color 0.3s ease;
+  font-size: 1.2rem; /* Adjust the font size for the button */
+  padding: 0.75rem 1.5rem; /* Increase padding for a bigger button */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Spinner for loading state */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+}
+
+/* Mode Toggle Styling */
+.mode-toggle {
+  margin-top: 20px; /* Space above toggle switch */
+  display: flex; /* Flexbox for toggle */
+  align-items: center; /* Center items vertically */
+}
+
+/* Toggle switch styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 25px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #007BFF;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.dark-mode .slider {
+  background-color: #4CAF50;
+}
+
+/* Smaller text size for the main content */
+.main-content h1 {
+  font-size: 2rem; /* Adjust heading size */
 }
